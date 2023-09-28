@@ -143,3 +143,11 @@ table {
 	position: -webkit-sticky;
 	top:0;
 }
+@media(max-width: 600px) {
+  .navbar {
+    display: none;
+  }
+  .footer {
+    display: none;
+  }
+}
