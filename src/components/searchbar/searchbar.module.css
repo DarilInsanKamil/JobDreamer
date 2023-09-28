@@ -1,0 +1,30 @@
+.container {
+  margin-bottom: 20px;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  padding: 20px 0px;
+}
+.container p {
+  font-family: var(--font-poppins);
+  font-size: 14px;
+  max-width: 800px;
+  margin-bottom: 0.5rem;
+  color: #0f0f0f;
+}
+.container h1 {
+  font-size: 32px;
+  color: #0f0f0f;
+  margin-bottom: 0.5rem;
+}
+.control_container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .container p {
+    font-size: 12px;
+  }
+}

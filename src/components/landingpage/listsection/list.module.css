@@ -1,0 +1,49 @@
+.listJob_container {
+  margin-top: 80px;
+  color: #0f0f0f;
+}
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.title2 {
+  font-size: 3rem;
+  line-height: 1;
+}
+.copywrite_works {
+  font-family: var(--font-poppins);
+  margin: 20px 0px 0px 0px;
+  max-width: 600px;
+  color: #8a8a8a;
+}
+.main {
+  display: grid;
+  grid-template-columns: repeat(12, [col-start] 1fr);
+}
+.sub_container_small {
+  grid-column: col-start 2 / span 10;
+}
+.card_column {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 600px) {
+  .main {
+    grid-template-columns: repeat(6, [col-start] 1fr);
+  }
+  .listJob_container {
+    padding: 20px;
+  }
+  .sub_container_small {
+    grid-column: col-start 1 / span 6;
+  }
+  .card_column {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

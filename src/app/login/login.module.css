@@ -1,0 +1,30 @@
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.container label {
+  font-family: var(--font-poppins);
+}
+.input_container {
+  margin-bottom: 20px;
+}
+.title {
+  font-size: 2.5rem;
+}
+.cpywrite {
+  margin: 0.5rem 0rem;
+  font-family: var(--font-poppins);
+  margin-bottom: 4rem;
+  color: #8a8a8a;
+}
+.heading {
+  max-width: 420px;
+}
+.btn {
+  background-color: blue;
+  width: 100%;
+  padding: 20px;
+}

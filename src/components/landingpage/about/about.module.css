@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+}
+.images {
+  object-fit: contain;
+  border-radius: 100px;
+  margin-right: 0.25rem;
+}
+.container h1 {
+  font-size: 3rem;
+}
+.sub_container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  margin: 20px;
+}
+.heading_user {
+  display: flex;
+  align-items: center;
+}
+.card_user {
+  border-radius: 4px;
+  padding: 20px;
+  font-family: var(--font-poppins);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.ulasan {
+  max-width: 540px;
+  font-size: 14px;
+  color: #8a8a8a;
+}
+.name {
+  font-weight: 600;
+}
+@media (max-width: 600px) {
+  .sub_container {
+    flex-direction: column;
+  }
+  .container {
+    padding: 0px 20px;
+  }
+  .container h1 {
+   text-align: center;
+  }
+}

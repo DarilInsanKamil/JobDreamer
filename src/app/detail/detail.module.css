@@ -1,0 +1,50 @@
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.heading_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  font-family: var(--font-poppins);
+}
+.heading h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.heading p {
+  color: #8a8a8a;
+  /* margin-top: 0.5rem; */
+}
+.info_container {
+  display: flex;
+  padding: 0px 40px;
+  align-items: center;
+  justify-content: space-around;
+  font-family: var(--font-poppins);
+  text-align: center;
+}
+
+.info_container h4 {
+  font-weight: 600;
+}
+.info_container p {
+  color: #8a8a8a;
+}
+
+.DetailJob {
+  padding: 0px 40px;
+  font-family: var(--font-poppins);
+  margin-top: 40px;
+}
+.DetailJob h3 {
+  font-weight: 600;
+}
+.desc{
+    margin-top: 20px;
+}
+.qual{
+    margin-top: 20px;
+}

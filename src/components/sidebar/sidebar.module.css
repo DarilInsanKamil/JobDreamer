@@ -1,0 +1,37 @@
+.container{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  border-radius: 0.5rem;
+  background-color: white;
+  position: sticky;
+  top: 80px;
+  padding: 1.75rem 1.25rem;
+}
+.container h1 {
+  font-size: 1.25rem;
+  font-family: var(--font-poppins);
+  font-weight: 600;
+}
+.salary {
+  display: flex;
+  gap: 8px;
+}
+.drop{
+  padding: 1rem 0rem;
+  display: flex;
+  justify-content: space-between;
+}
+.drop button {
+  background-color: transparent;
+  border: 0px;
+}
+.arrowup {
+  transform: rotate(-180deg);
+  transition: all 0.2s ease-in-out;
+}
+.arrowdown {
+  /* transform: rotate(180deg); */
+  transition: all 0.2s ease-in-out;
+}
+.drop p {
+  font-family: var(--font-poppins);
+}

@@ -1,0 +1,86 @@
+.card_container {
+  border-radius: 0.5rem;
+  background-color: #fff;
+  padding: 1rem;
+  font-family: var(--font-poppins);
+  color: #0f0f0f;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.img {
+  object-fit: contain;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0rem;
+}
+.headText {
+  line-height: 1.2;
+  margin-left: 0.5rem;
+}
+.title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.company_name {
+  color: var(--text-sub-color);
+  font-size: 0.75rem;
+}
+.icon {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+.job_description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 400px;
+  color: #8a8a8a;
+  margin: 0.75rem 0rem;
+  font-size: 0.75rem;
+}
+.card_footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.tenure_type {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  color: var(--text-sub-color);
+  font-size: 0.75rem;
+}
+.job_type {
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--primer-color);
+  border-radius: 0.25rem;
+}
+.job_tenure {
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--primer-color);
+  border-radius: 0.25rem;
+}
+.btn {
+  background-color: transparent;
+  border: 0px solid #0f0f0f;
+  color: rgb(82, 82, 255);
+  cursor: pointer;
+}
+.salary {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  vertical-align: middle;
+}
+.company_city {
+  vertical-align: middle;
+  font-size: 0.75rem;
+}
