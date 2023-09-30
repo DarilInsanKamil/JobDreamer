@@ -1,15 +1,14 @@
 "use client";
 import React, { useContext, useState } from "react";
-import styles from "./login.module.css";
 import { Button, InputType } from "@/components";
 import { handleChange } from "../../utils/handleChange";
 import { useRouter } from "next/navigation";
 import { VacancyContext } from "../context";
+import styles from "./login.module.css";
 
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const { LoginSubmit } = useContext(VacancyContext);
-
   const [inputData, setInputData] = useState({
     email: "",
     password: "",

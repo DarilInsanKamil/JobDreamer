@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext, useState } from "react";
 import { VacancyContext } from "../context";
-import { Button, Card, SearchBar, Sidebar } from "@/components";
+import { Button, Card, LoaderSkeleton, SearchBar, Sidebar } from "@/components";
 import { useRouter } from "next/navigation";
 import { useWindowSize } from "@/utils/window_size";
 import { tandaPemisahTitik } from "@/utils/convert";
@@ -9,10 +9,19 @@ import SectionResult from "./[slug]/sectionResult";
 import styles from "./vacancy.module.css";
 
 export default function Vacancy() {
-  const { data, setData, loading } = useContext(VacancyContext);
+  const { data, loading, page, PaginationNext, PaginationPrev, last_page } =
+    useContext(VacancyContext);
+  const length = data.length;
   const [query, setQuery] = useState("");
   const router = useRouter();
   const size = useWindowSize();
+
+  const handleNext = () => {
+    PaginationNext();
+  };
+  const handlePrev = () => {
+    PaginationPrev();
+  };
   const handleClick = (event) => {
     let value = event.target.value;
     router.push(`/vacancy/${value}`);
@@ -36,7 +45,7 @@ export default function Vacancy() {
         {query && <SectionResult query={query} setQuery={setQuery} />}
         {!query && (
           <div className={styles.card_column}>
-            {loading ? <p className={styles.loader}></p> : null}
+            {loading ? <LoaderSkeleton /> : null}
             {data &&
               data.map((res, idx) => (
                 <Card
@@ -57,6 +66,10 @@ export default function Vacancy() {
               ))}
           </div>
         )}
+        <section>
+          {page > 1 ? <button onClick={handlePrev}>Prev</button> : null}
+          {last_page > 1 ? <button onClick={handleNext}>Next</button> : null}
+        </section>
       </div>
     </div>
   );

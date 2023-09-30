@@ -17,7 +17,7 @@ export const HeroSection = () => {
           draggable="false"
           alt="hero"
           className={styles.image_hero1}
-          priority="true"
+          priority={true}
         />
       </div>
       <div className={styles.left_hero}>

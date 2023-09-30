@@ -1,5 +1,5 @@
 import { VacancyContext } from "@/app/context";
-import { Card } from "@/components";
+import { Card, LoaderSkeleton } from "@/components";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import styles from "../listsection/list.module.css";
@@ -18,7 +18,7 @@ export const ListCard = () => {
     <div className={styles.main}>
       <div className={styles.sub_container_small}>
         <div className={styles.card_column}>
-          {loading ? <p className={styles.loader}></p> : null}
+          {loading ? <LoaderSkeleton/> : null}
           {data &&
             sliceData.map((res, idx) => (
               <Card

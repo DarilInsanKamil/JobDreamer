@@ -11,9 +11,19 @@
   font-family: var(--font-poppins);
   font-weight: 600;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  } 
+  to {
+    opacity: 1;
+  }
+}
 .salary {
   display: flex;
   gap: 8px;
+  animation: fadeIn 0.5s linear;
 }
 .drop{
   padding: 1rem 0rem;

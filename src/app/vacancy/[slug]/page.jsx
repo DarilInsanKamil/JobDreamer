@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
+import { Suspense, useContext } from "react";
 import styles from "./detail.module.css";
 import { splitter, tandaPemisahTitik } from "@/utils/convert";
+import { VacancyContext } from "@/app/context";
+import { Button } from "@/components";
+
 const getData = async (params) => {
   try {
     const res = await fetch(
@@ -36,10 +39,19 @@ export default async function DetailJob({ params }) {
               <p>{data.company_name}</p>
             </div>
           </div>
-          <div>
-            <button>Lamar</button>
-            <button>Share</button>
-            <button>Simpan</button>
+          <div className={styles.btn_container}>
+            <Button text={"Lamar"} />
+            <div className={styles.imgbtn}>
+              <Image src="/share.svg" width={20} height={20} alt="icon-share" />
+            </div>
+            <div className={styles.imgbtn}>
+              <Image
+                src="/bookmar.svg"
+                width={20}
+                height={20}
+                alt="icon-share"
+              />
+            </div>
           </div>
         </div>
         <div className={styles.info_container}>
@@ -58,18 +70,32 @@ export default async function DetailJob({ params }) {
           <div>
             <h4>Salary</h4>
             <p>
-              IDR. {tandaPemisahTitik(data.salary_min)} - {tandaPemisahTitik(data.salary_max)}
+              IDR. {tandaPemisahTitik(data.salary_min)} -{" "}
+              {tandaPemisahTitik(data.salary_max)}
             </p>
           </div>
         </div>
         <div className={styles.DetailJob}>
           <div className={styles.desc}>
             <h3>Job Description</h3>
-            <p>{splitter(data.job_description)}</p>
+            {splitter(data.job_description).map((res, idx) => {
+              return (
+                <ul key={idx}>
+                  <li>{res}</li>
+                </ul>
+              );
+            })}
           </div>
           <div className={styles.qual}>
             <h3>Job Qualification</h3>
-            <p>{data.job_qualification}</p>
+            {/* <p>{data.job_qualification}</p> */}
+            {splitter(data.job_qualification).map((res, idx) => {
+              return (
+                <ul key={idx}>
+                  <li>{res}</li>
+                </ul>
+              );
+            })}
           </div>
         </div>
       </section>

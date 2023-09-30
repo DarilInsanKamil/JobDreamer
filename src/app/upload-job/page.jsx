@@ -1,11 +1,15 @@
 "use client";
 import { Button, InputType, Select, TextArea } from "@/components";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { handleChange } from "../../utils/handleChange";
 import styles from "./upload.module.css";
 import Image from "next/image";
 import { Datajobtype, Datajobtenure } from "../../utils/dataselect";
+import { VacancyContext } from "../context";
+import { useRouter } from "next/navigation";
 export default function UploadJobPage() {
+  const { JobSubmit } = useContext(VacancyContext);
+  const [loading, setLoading] = useState(false);
   const [inputData, setInputData] = useState({
     title: "",
     job_description: "",
@@ -19,13 +23,18 @@ export default function UploadJobPage() {
     salary_min: "",
     salary_max: "",
   });
-
+  const router = useRouter();
+  const handleSubmitJob = (event) => {
+    event.preventDefault();
+    JobSubmit(router, inputData, setInputData, setLoading);
+  };
   const handleChangeForm = (event) =>
     handleChange(event, inputData, setInputData);
 
+  console.log(inputData);
   return (
     <main className={styles.container}>
-      <form className={styles.form_container}>
+      <form className={styles.form_container} onSubmit={handleSubmitJob}>
         <h1 className={styles.title}>Upload Job</h1>
         <InputType
           type={"text"}
@@ -130,7 +139,7 @@ export default function UploadJobPage() {
             />
           </div>
         </div>
-        <Button text={"Upload Job"} />
+        <Button text={"Upload Job"} type={"submit"} />
       </form>
     </main>
   );

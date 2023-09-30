@@ -14,9 +14,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${poppins.variable}`}>
         <VacancyProvider>
-          <nav className="navbar">
+          {/* <nav className="navbar">
             <Navbar />
-          </nav>
+          </nav> */}
           <main>
             {children}
           </main>
