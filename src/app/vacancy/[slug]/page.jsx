@@ -4,14 +4,14 @@ import { Suspense, useContext } from "react";
 import styles from "./detail.module.css";
 import { splitter, tandaPemisahTitik } from "@/utils/convert";
 import { VacancyContext } from "@/app/context";
-import { Button } from "@/components";
+import { Button, LoadingDetail } from "@/components";
 
 const getData = async (params) => {
   try {
     const res = await fetch(
       `https://dev-example.sanbercloud.com/api/job-vacancy/${params}`
     );
-    return await res.json();
+    return res.json();
   } catch (error) {
     console.log(JSON.stringify(error));
   }
@@ -20,7 +20,7 @@ const getData = async (params) => {
 export default async function DetailJob({ params }) {
   const data = await getData(params.slug);
   return (
-    <Suspense fallback={<p>Loading....</p>}>
+    <Suspense fallback={<LoadingDetail />}>
       <button>
         <Link href="/vacancy">{`< kembali`}</Link>
       </button>

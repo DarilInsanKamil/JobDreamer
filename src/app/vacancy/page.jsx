@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext, useState } from "react";
 import { VacancyContext } from "../context";
-import { Button, Card, LoaderSkeleton, SearchBar, Sidebar } from "@/components";
+import { Button, Card, FilterBar, LoaderSkeleton, SearchBar } from "@/components";
 import { useRouter } from "next/navigation";
 import { useWindowSize } from "@/utils/window_size";
 import { tandaPemisahTitik } from "@/utils/convert";
@@ -36,7 +36,7 @@ export default function Vacancy() {
   return (
     <div className={styles.container}>
       <div className={styles.sidebar}>
-        <Sidebar />
+        <FilterBar />
       </div>
 
       <div suppressHydrationWarning className={styles.sub_container}>

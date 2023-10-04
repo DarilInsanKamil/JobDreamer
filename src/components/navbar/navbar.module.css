@@ -1,11 +1,12 @@
 .nav {
-  padding: 12px 20px;
+  padding: 8px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: sticky;
   background-color: #fff;
-  top:0;
+  top: 0;
+  z-index: 1;
 }
 .nav ul {
   display: flex;
@@ -16,13 +17,35 @@
   height: "auto";
   object-fit: contain;
 }
+.img_profile {
+  height: 30px;
+  width: 30px;
+  background-color: blueviolet;
+  object-fit: cover;
+  border-radius: 1000px;
+}
 .button_container {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+.profile_container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 100px;
+  border: 1px solid #0f0f0f;
+}
+.button_container a {
+  text-decoration: none;
+}
 .items {
   cursor: pointer;
+}
+.list_container a {
+  text-decoration: none;
+  color: #0f0f0f;
 }
 .btn {
   background-color: #0f0f0f;

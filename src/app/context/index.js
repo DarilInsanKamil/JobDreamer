@@ -10,9 +10,15 @@ export const VacancyProvider = ({ children }) => {
     const [isDataChange, setIsDataChange] = useState(true);
     const [page, setPage] = useState(1);
     const [last_page, setLastPage] = useState(null);
+    const [user, setUser] = useState({
+        name: '',
+        image: '',
+    });
+    const [token, setToken] = useState('');
+
     const PAGE_API = `https://dev-example.sanbercloud.com/api/job-vacancy?page=${page}`;
     const MAIN_API = `https://dev-example.sanbercloud.com/api/job-vacancy`;
-    const LOGIN_API = `https://dev-example.sanbercloud.com/api/login`;
+    const LOGIN_API = 'https://dev-example.sanbercloud.com/api/login';
     const RESET_API = `https://dev-example.sanbercloud.com/api/change-password`;
 
     const PaginationNext = () => {
@@ -28,6 +34,42 @@ export const VacancyProvider = ({ children }) => {
             setIsDataChange(true)
         }
     }
+
+    const Logout = (router) => {
+        const datatoken = Cookies.get('token') || null;
+        setLoading(true)
+        if (datatoken !== null) {
+            Cookies.remove('token')
+            Cookies.remove('name')
+            Cookies.remove('image')
+            setToken('')
+            setUser({
+                name: '',
+                image: ''
+            })
+            setLoading(false)
+            setIsDataChange(true)
+            router.push('/login')
+        }
+    }
+
+    const getToken = () => {
+        const datatoken = Cookies.get('token') || null;
+        if (datatoken !== null) {
+            setToken(Cookies.get('token'));
+            setUser({
+                name: Cookies.get('name'),
+                image: Cookies.get('image')
+            })
+        }
+    }
+
+    useEffect(() => {
+        if (isDataChange) {
+            getToken()
+            setIsDataChange(false)
+        }
+    }, [isDataChange])
 
     //get data
     const getData = async () => {
@@ -45,6 +87,7 @@ export const VacancyProvider = ({ children }) => {
         }
     }, [isDataChange, setIsDataChange])
 
+
     //login
     const LoginSubmit = async (inputData, setLoading, router) => {
         setLoading(true);
@@ -61,6 +104,7 @@ export const VacancyProvider = ({ children }) => {
             console.log('berhasil login');
             setLoading(false);
             router.push('/vacancy');
+            setIsDataChange(false);
         }
         catch (err) {
             console.log(err)
@@ -142,7 +186,12 @@ export const VacancyProvider = ({ children }) => {
         PaginationPrev,
         page,
         last_page,
-        ChangePassword
+        ChangePassword,
+        token,
+        setToken,
+        user,
+        setUser,
+        Logout
     }
 
     return (

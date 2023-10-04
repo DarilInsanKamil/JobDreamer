@@ -18,7 +18,7 @@ export const Card = ({
   return (
     <div className={styles.card_container}>
       <div className={styles.heading}>
-        <Image
+        <img
           src={src}
           alt={alt}
           width={40}

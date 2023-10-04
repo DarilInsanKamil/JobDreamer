@@ -4,7 +4,7 @@ import { InputType, Button } from "..";
 import styles from "./sidebar.module.css";
 import Image from "next/image";
 
-export const Sidebar = () => {
+export const FilterBar = () => {
   const [openLocation, setOpenLocation] = useState(true);
   const [openType, setOpenType] = useState(true);
   const [openExperience, setOpenExperience] = useState(true);

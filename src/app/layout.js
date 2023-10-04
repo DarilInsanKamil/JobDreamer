@@ -1,7 +1,7 @@
 import './globals.css'
 import { poppins } from './fonts/font'
 import { VacancyProvider } from './context';
-import { Footer, Navbar } from '@/components';
+import { Footer, NavigationBar } from '@/components';
 
 export const metadata = {
   title: 'Job Dreamer',
@@ -14,9 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${poppins.variable}`}>
         <VacancyProvider>
-          {/* <nav className="navbar">
-            <Navbar />
-          </nav> */}
+          <NavigationBar/>
           <main>
             {children}
           </main>
