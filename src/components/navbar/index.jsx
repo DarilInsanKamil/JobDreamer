@@ -17,9 +17,15 @@ export const NavigationBar = () => {
   return (
     <>
       {size.width > 600 ? (
-        <Desktop props={popup ? <PopUp /> : null} onClick={handlePopup} />
+        <Desktop
+          props={popup ? <PopUp setPopup={setPopup} /> : null}
+          onClick={handlePopup}
+        />
       ) : (
-        <Mobile props={popup ? <PopUp /> : null} onClick={handlePopup} />
+        <Mobile
+          props={popup ? <PopUp setPopup={setPopup} /> : null}
+          onClick={handlePopup}
+        />
       )}
     </>
   );
@@ -113,16 +119,35 @@ const Mobile = ({ props, onClick }) => {
   );
 };
 
-const PopUp = () => {
+const PopUp = ({ setPopup }) => {
   const { token, user, Logout } = useContext(VacancyContext);
   const handleRouteLogout = () => Logout(router);
   const size = useWindowSize();
   const router = useRouter();
+
   const handleRouteLogin = () => {
     router.push("/login");
+    setPopup(false);
   };
   const handleRouteRegist = () => {
     router.push("/register");
+    setPopup(false);
+  };
+  const handleRouteChange = () => {
+    router.push("/change-password");
+    setPopup(false);
+  };
+  const handleRouteHome = () => {
+    router.push("/");
+    setPopup(false);
+  };
+  const handleRouteVacancy = () => {
+    router.push("/vacancy");
+    setPopup(false);
+  };
+  const handleRouteUpload = () => {
+    router.push("/upload-job");
+    setPopup(false);
   };
   return (
     <>
@@ -131,7 +156,10 @@ const PopUp = () => {
           <ul className={styles.popup_list}>
             <li>
               <div className={styles.popup_list}>
-                <ButtonLine text={"Change Password"} />
+                <ButtonLine
+                  text={"Change Password"}
+                  onClick={handleRouteChange}
+                />
                 <Button onClick={handleRouteLogout} text={"Logout"} />
               </div>
             </li>
@@ -157,18 +185,21 @@ const PopUp = () => {
                 </div>
               )}
             </li>
-            <Link href={"/"}>
-              <li className={styles.items}>Home</li>
-            </Link>
-            <li className={styles.items}>
-              <Link href={"/vacancy"}>Job Vacancy</Link>
+            <li className={styles.items} onClick={handleRouteHome}>
+              Home
             </li>
-            <li className={styles.items}>
-              <Link href={"/upload-job"}>Upload Job</Link>
+            <li className={styles.items} onClick={handleRouteVacancy}>
+              Job Vacancy
+            </li>
+            <li className={styles.items} onClick={handleRouteUpload}>
+              Upload Job
             </li>
             <li>
               <div className={styles.popup_list}>
-                <ButtonLine text={"Change Password"} />
+                <ButtonLine
+                  onClick={handleRouteChange}
+                  text={"Change Password"}
+                />
                 <Button onClick={handleRouteLogout} text={"Logout"} />
               </div>
             </li>
