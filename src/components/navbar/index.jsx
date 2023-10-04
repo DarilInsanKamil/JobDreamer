@@ -55,8 +55,8 @@ const Desktop = () => {
       </ul>
       {token == "" ? (
         <div className={styles.button_container}>
-          <ButtonLine text={"Daftar"} onClick={handleRouteLogin} />
-          <Button text={"Masuk"} onClick={handleRouteRegist} />
+          <ButtonLine text={"Daftar"} onClick={handleRouteRegist} />
+          <Button text={"Masuk"} onClick={handleRouteLogin} />
         </div>
       ) : (
         <div className={styles.profile_container} onClick={handleRouteLogout}>
@@ -66,7 +66,6 @@ const Desktop = () => {
             alt="img-profile"
           />
           <p>{user.name}</p>
-          {/* <Button text={"Logout"} onClick={handleRouteRegist} /> */}
         </div>
       )}
     </nav>
@@ -74,6 +73,8 @@ const Desktop = () => {
 };
 
 const Mobile = () => {
+  const { token, user, Logout } = useContext(VacancyContext);
+  const handleRouteLogout = () => Logout(router);
   return (
     <nav className={styles.nav}>
       <section>
@@ -89,15 +90,26 @@ const Mobile = () => {
           />
         </Link>
       </section>
-      <Image
-        src={"/menu-black.svg"}
-        width={20}
-        height={20}
-        alt="menu"
-        draggable="false"
-        priority={true}
-        // className={styles.img}
-      />
+      {token == "" ? (
+        <Image
+          src={"/menu-black.svg"}
+          width={20}
+          height={20}
+          alt="menu"
+          draggable="false"
+          priority={true}
+          // className={styles.img}
+        />
+      ) : (
+        <div className={styles.profile_container} onClick={handleRouteLogout}>
+          <img
+            className={styles.img_profile}
+            src={user.image}
+            alt="img-profile"
+          />
+          <p>{user.name}</p>
+        </div>
+      )}
     </nav>
   );
 };

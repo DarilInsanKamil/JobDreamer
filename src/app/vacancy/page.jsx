@@ -1,9 +1,15 @@
 "use client";
 import React, { useContext, useState } from "react";
 import { VacancyContext } from "../context";
-import { Button, Card, FilterBar, LoaderSkeleton, SearchBar } from "@/components";
+import {
+  Button,
+  ButtonLine,
+  Card,
+  FilterBar,
+  LoaderSkeleton,
+  SearchBar,
+} from "@/components";
 import { useRouter } from "next/navigation";
-import { useWindowSize } from "@/utils/window_size";
 import { tandaPemisahTitik } from "@/utils/convert";
 import SectionResult from "./[slug]/sectionResult";
 import styles from "./vacancy.module.css";
@@ -14,7 +20,6 @@ export default function Vacancy() {
   const length = data.length;
   const [query, setQuery] = useState("");
   const router = useRouter();
-  const size = useWindowSize();
 
   const handleNext = () => {
     PaginationNext();
@@ -42,7 +47,7 @@ export default function Vacancy() {
       <div suppressHydrationWarning className={styles.sub_container}>
         <SearchBar onSearch={onSearch} />
         <div className={styles.filtermobile}>
-          <Button text={'Filter'} />
+          <Button text={"Filter"} />
         </div>
         {query && <SectionResult query={query} setQuery={setQuery} />}
         {!query && (
@@ -68,9 +73,13 @@ export default function Vacancy() {
               ))}
           </div>
         )}
-        <section>
-          {page > 1 ? <button onClick={handlePrev}>Prev</button> : null}
-          {last_page > 1 ? <button onClick={handleNext}>Next</button> : null}
+        <section className={styles.pagination_container}>
+            {page > 1 ? (
+              <ButtonLine onClick={handlePrev} text={"Previous"} />
+            ) : null}
+            {last_page > 1 && page < last_page ? (
+              <Button onClick={handleNext} text={"Next"} />
+            ) : null}
         </section>
       </div>
     </div>

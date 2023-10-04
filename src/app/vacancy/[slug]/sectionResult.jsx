@@ -26,7 +26,7 @@ export default function SectionResult({ query }) {
             {result.map((res, idx) => (
               <Card
                 key={idx}
-                title={res.title}
+                title={res.title == "" ? "test" : res.title}
                 src={res.company_image_url}
                 alt={res.title}
                 company_name={res.company_name}
@@ -34,8 +34,8 @@ export default function SectionResult({ query }) {
                 job_description={res.job_description}
                 job_tenure={res.job_tenure}
                 job_type={res.job_type}
-                salary_min={tandaPemisahTitik(res.salary_min)}
-                salary_max={tandaPemisahTitik(res.salary_max)}
+                salary_min={res.salary_min}
+                salary_max={res.salary_max}
                 valbtn={res.id}
                 onClick={handleClick}
               />
