@@ -4,7 +4,7 @@ import { Suspense, useContext } from "react";
 import styles from "./detail.module.css";
 import { splitter, tandaPemisahTitik } from "@/utils/convert";
 import { VacancyContext } from "@/app/context";
-import { Button, LoadingDetail } from "@/components";
+import { Button, LoaderSkeleton, LoadingDetail } from "@/components";
 
 const getData = async (params) => {
   try {
@@ -20,7 +20,7 @@ const getData = async (params) => {
 export default async function DetailJob({ params }) {
   const data = await getData(params.slug);
   return (
-    <Suspense fallback={<LoadingDetail />}>
+    <Suspense fallback={<LoaderSkeleton />}>
       <button>
         <Link href="/vacancy">{`< kembali`}</Link>
       </button>

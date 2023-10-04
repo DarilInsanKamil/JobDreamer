@@ -37,6 +37,7 @@
   border-radius: 100px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   font-family: var(--font-poppins);
+  cursor: pointer;
 }
 .button_container a {
   text-decoration: none;
@@ -45,6 +46,10 @@
   cursor: pointer;
 }
 .list_container a {
+  text-decoration: none;
+  color: #0f0f0f;
+}
+.popup_list a {
   text-decoration: none;
   color: #0f0f0f;
 }
@@ -70,4 +75,30 @@
   font-size: 14px;
   padding: 12px;
   cursor: pointer;
+}
+@keyframes fadeIn{
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.popup_container {
+  position: absolute;
+  padding: 20px;
+  right: 20px;
+  background-color: white;
+  top: 60px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 12px;
+  font-family: var(--font-poppins);
+  transition: all 0.2s ease-in-out;
+  animation: fadeIn 0.2s linear;
+}
+.popup_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 12px;
 }
