@@ -41,7 +41,9 @@ export default function Vacancy() {
 
       <div suppressHydrationWarning className={styles.sub_container}>
         <SearchBar onSearch={onSearch} />
-        {size.width < 600 ? <Button text={"Filter"} /> : null}
+        <div className={styles.filtermobile}>
+          <Button text={'Filter'} />
+        </div>
         {query && <SectionResult query={query} setQuery={setQuery} />}
         {!query && (
           <div className={styles.card_column}>
@@ -58,8 +60,8 @@ export default function Vacancy() {
                   job_description={res.job_description}
                   job_tenure={res.job_tenure}
                   job_type={res.job_type}
-                  salary_min={tandaPemisahTitik(res.salary_min)}
-                  salary_max={tandaPemisahTitik(res.salary_max)}
+                  salary_min={res.salary_min}
+                  salary_max={res.salary_max}
                   onClick={handleClick}
                   valbtn={res.id}
                 />

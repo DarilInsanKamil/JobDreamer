@@ -24,6 +24,10 @@
 }
 
 @media (max-width: 600px) {
+  .container {
+    margin-bottom: 0px;
+    padding: 0px;
+  }
   .container p {
     font-size: 12px;
   }

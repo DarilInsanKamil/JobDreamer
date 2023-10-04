@@ -16,13 +16,14 @@ export const NavigationBar = () => {
 const Desktop = () => {
   const { token, user, Logout } = useContext(VacancyContext);
   const router = useRouter();
+  console.log(user);
   const handleRouteLogin = () => {
     router.push("/login");
   };
   const handleRouteRegist = () => {
     router.push("/register");
   };
-  const handleRouteLogout = () => Logout(router)
+  const handleRouteLogout = () => Logout(router);
   return (
     <nav className={styles.nav}>
       <section>
@@ -59,7 +60,11 @@ const Desktop = () => {
         </div>
       ) : (
         <div className={styles.profile_container} onClick={handleRouteLogout}>
-          <img className={styles.img_profile} src={user.image} alt="img-profile"/>
+          <img
+            className={styles.img_profile}
+            src={user.image}
+            alt="img-profile"
+          />
           <p>{user.name}</p>
           {/* <Button text={"Logout"} onClick={handleRouteRegist} /> */}
         </div>
@@ -69,5 +74,30 @@ const Desktop = () => {
 };
 
 const Mobile = () => {
-  return <p>Mobile</p>;
+  return (
+    <nav className={styles.nav}>
+      <section>
+        <Link href={"/"}>
+          <Image
+            src={"/comprofile.svg"}
+            width={140}
+            height={40}
+            alt="logo"
+            draggable="false"
+            priority={true}
+            className={styles.img}
+          />
+        </Link>
+      </section>
+      <Image
+        src={"/menu-black.svg"}
+        width={20}
+        height={20}
+        alt="menu"
+        draggable="false"
+        priority={true}
+        // className={styles.img}
+      />
+    </nav>
+  );
 };

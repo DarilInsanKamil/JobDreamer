@@ -22,6 +22,7 @@ export const VacancyProvider = ({ children }) => {
     const RESET_API = `https://dev-example.sanbercloud.com/api/change-password`;
 
     const PaginationNext = () => {
+        setData([])
         if (page < last_page) {
             setPage(page + 1)
             setIsDataChange(true)
@@ -29,6 +30,7 @@ export const VacancyProvider = ({ children }) => {
     }
 
     const PaginationPrev = () => {
+        setData([])
         if (page > 1) {
             setPage(page - 1);
             setIsDataChange(true)
@@ -69,7 +71,7 @@ export const VacancyProvider = ({ children }) => {
             getToken()
             setIsDataChange(false)
         }
-    }, [isDataChange])
+    }, [isDataChange, setIsDataChange])
 
     //get data
     const getData = async () => {

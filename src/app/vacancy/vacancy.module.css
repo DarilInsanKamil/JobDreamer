@@ -14,7 +14,6 @@
 }
 .sidebar {
   grid-column: col-start 1 / span 3;
-  /* background-color: beige; */
 }
 .loader {
   margin-top: 0.75rem;
@@ -29,7 +28,10 @@
 .loader::after {
   content: "";
 }
-
+.filtermobile {
+  display: none;
+  margin: 20px 0px;
+}
 /* Safari */
 @-webkit-keyframes spin {
   0% {
@@ -51,6 +53,7 @@
 
 @media (max-width: 600px) {
   .container {
+    padding: 20px;
     grid-template-columns: repeat(6, [col-start] 1fr);
   }
   .sub_container {
@@ -63,5 +66,8 @@
   }
   .sidebar {
     display: none;
+  }
+  .filtermobile{
+    display: block;
   }
 }
