@@ -15,6 +15,7 @@
 .img_profile {
   object-fit: cover;
   border-radius: 100px;
+  cursor: pointer;
 }
 
 .items {
@@ -64,6 +65,9 @@
   display: flex;
   gap: 40px;
   align-items: center;
+}
+.desktop_navigation li {
+  cursor: pointer;
 }
 
 .profile_container_desktop {

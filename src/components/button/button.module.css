@@ -6,6 +6,7 @@
   font-size: 14px;
   border-radius: 0.25rem;
   width: 100%;
+  cursor: pointer;
 }
 
 .buttonLine {
@@ -16,5 +17,6 @@
   font-size: 14px;
   border-radius: 0.25rem;
   width: 100%;
+  cursor: pointer;
 }
 

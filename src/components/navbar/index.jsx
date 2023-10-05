@@ -47,6 +47,21 @@ export const NavigationBar = () => {
     setPopProfile(false);
     setPopNav(false);
   };
+  const handleRouteChange = () => {
+    router.push("/change-password");
+    setPopProfile(false);
+    setPopNav(false);
+  };
+  const handleRouteDashboard = () => {
+    router.push("/delete");
+    setPopProfile(false);
+    setPopNav(false);
+  };
+  const handleRouteRegist = () => {
+    router.push("/register");
+    setPopProfile(false);
+    setPopNav(false);
+  };
   return (
     <nav>
       {size.width > 600 ? (
@@ -60,6 +75,9 @@ export const NavigationBar = () => {
           handleRouteVacancy={handleRouteVacancy}
           handleRouteUpload={handleRouteUpload}
           handleRouteAbout={handleRouteAbout}
+          handleRouteChange={handleRouteChange}
+          handleRouteDashboard={handleRouteDashboard}
+          handleRouteRegist={handleRouteRegist}
         />
       ) : (
         <Mobile
@@ -73,6 +91,9 @@ export const NavigationBar = () => {
           handleRouteVacancy={handleRouteVacancy}
           handleRouteUpload={handleRouteUpload}
           handleRouteAbout={handleRouteAbout}
+          handleRouteChange={handleRouteChange}
+          handleRouteDashboard={handleRouteDashboard}
+          handleRouteRegist={handleRouteRegist}
         />
       )}
     </nav>
@@ -89,6 +110,9 @@ const Mobile = ({
   handleRouteVacancy,
   handleRouteUpload,
   handleRouteAbout,
+  handleRouteDashboard,
+  handleRouteChange,
+  handleRouteRegist,
   token,
 }) => {
   return (
@@ -143,7 +167,7 @@ const Mobile = ({
               onClick={handlePopProfile}
             />
           ) : (
-            <Button text={"Daftar"} />
+            <Button text={"Daftar"} onClick={handleRouteRegist} />
           )}
         </div>
         {popProfile ? (
@@ -160,10 +184,10 @@ const Mobile = ({
                 <p>{user.name}</p>
               </div>
               <div className={styles.btn_container}>
-                <Link href={"/dashboard"}>Dashboard</Link>
+                <p onClick={handleRouteDashboard}>Dashboard</p>
                 <p className={styles.line}></p>
-                <Link href={"/change-password"}>Change Password</Link>
-                <Link href={"#"}>Logout</Link>
+                <p onClick={handleRouteChange}>Change Password</p>
+                <Button text={"Logout"} onClick={handleLogout} />
               </div>
             </div>
           </div>
@@ -183,6 +207,9 @@ const Desktop = ({
   handleRouteVacancy,
   handleRouteUpload,
   handleRouteAbout,
+  handleRouteChange,
+  handleRouteDashboard,
+  handleRouteRegist,
 }) => {
   return (
     <section className={styles.desktop_container}>
@@ -213,7 +240,7 @@ const Desktop = ({
             onClick={handlePopProfile}
           />
         ) : (
-          <Button text={"Daftar"} />
+          <Button text={"Daftar"} onClick={handleRouteRegist} />
         )}
       </div>
       {popProfile ? (
@@ -230,9 +257,9 @@ const Desktop = ({
               <p>{user.name}</p>
             </div>
             <div className={styles.btn_container}>
-              <Link href={"/dashboard"}>Dashboard</Link>
+              <p onClick={handleRouteDashboard}>Dashboard</p>
               <p className={styles.line}></p>
-              <Link href={"/change-password"}>Change Password</Link>
+              <p onClick={handleRouteChange}>Change Password</p>
               <Button text={"Logout"} onClick={handleLogout} />
             </div>
           </div>
