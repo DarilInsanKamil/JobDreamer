@@ -2,7 +2,6 @@
 import Image from "next/image";
 import styles from "./navbar.module.css";
 import { Button, ButtonLine } from "..";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { VacancyContext } from "@/app/context";
@@ -83,11 +82,12 @@ export const NavigationBar = () => {
         <Mobile
           user={user}
           popNav={popNav}
+          token={token}
           handlePopNav={handlePopNav}
           handlePopProfile={handlePopProfile}
           popProfile={popProfile}
-          token={token}
           handleRouteHome={handleRouteHome}
+          handleLogout={handleLogout}
           handleRouteVacancy={handleRouteVacancy}
           handleRouteUpload={handleRouteUpload}
           handleRouteAbout={handleRouteAbout}
@@ -113,6 +113,7 @@ const Mobile = ({
   handleRouteDashboard,
   handleRouteChange,
   handleRouteRegist,
+  handleLogout,
   token,
 }) => {
   return (
@@ -160,8 +161,8 @@ const Mobile = ({
           {token !== "" ? (
             <Image
               src={user.image}
-              width={40}
-              height={40}
+              width={36}
+              height={36}
               alt="icon-company"
               className={styles.img_profile}
               onClick={handlePopProfile}
@@ -223,9 +224,9 @@ const Desktop = ({
         <li onClick={handleRouteHome}>Home</li>
         <li onClick={handleRouteVacancy}>Job Vacancy</li>
         {token !== "" ? (
-          <p className={styles.items} onClick={handleRouteUpload}>
+          <li className={styles.items} onClick={handleRouteUpload}>
             Upload Job
-          </p>
+          </li>
         ) : null}
         <li onClick={handleRouteAbout}>About</li>
       </ul>
