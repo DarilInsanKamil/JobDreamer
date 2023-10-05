@@ -37,7 +37,7 @@ export const VacancyProvider = ({ children }) => {
         }
     }
 
-    const Logout = (router) => {
+    const Logout = (router, setPopup) => {
         const datatoken = Cookies.get('token') || null;
         setLoading(true)
         if (datatoken !== null) {
@@ -51,6 +51,7 @@ export const VacancyProvider = ({ children }) => {
             })
             setLoading(false)
             setIsDataChange(true)
+            setPopup(false)
             router.push('/login')
         }
     }

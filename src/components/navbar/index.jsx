@@ -9,203 +9,235 @@ import { VacancyContext } from "@/app/context";
 import { useWindowSize } from "@/utils/window_size";
 
 export const NavigationBar = () => {
-  const size = useWindowSize();
-  const [popup, setPopup] = useState(false);
-  const handlePopup = () => {
-    setPopup(!popup);
-  };
-  return (
-    <>
-      {size.width > 600 ? (
-        <Desktop
-          props={popup ? <PopUp setPopup={setPopup} /> : null}
-          onClick={handlePopup}
-        />
-      ) : (
-        <Mobile
-          props={popup ? <PopUp setPopup={setPopup} /> : null}
-          onClick={handlePopup}
-        />
-      )}
-    </>
-  );
-};
-
-const Desktop = ({ props, onClick }) => {
-  const { token, user, Logout } = useContext(VacancyContext);
-  const router = useRouter();
-  const handleRouteLogin = () => {
-    router.push("/login");
-  };
-  const handleRouteRegist = () => {
-    router.push("/register");
-  };
-  return (
-    <nav className={styles.nav}>
-      <section>
-        <Link href={"/"}>
-          <Image
-            src={"/comprofile.svg"}
-            width={140}
-            height={40}
-            alt="logo"
-            draggable="false"
-            priority={true}
-            className={styles.img}
-          />
-        </Link>
-      </section>
-      <ul className={styles.list_container}>
-        <Link href={"/"}>
-          <li className={styles.items}>Home</li>
-        </Link>
-        <li className={styles.items}>
-          <Link href={"/vacancy"}>Job Vacancy</Link>
-        </li>
-        <li className={styles.items}>
-          <Link href={"/upload-job"}>Upload Job</Link>
-        </li>
-        <li className={styles.items}>
-          <Link href={"/about"}>About Us</Link>
-        </li>
-      </ul>
-      {token == "" ? (
-        <div className={styles.button_container}>
-          <ButtonLine text={"Daftar"} onClick={handleRouteRegist} />
-          <Button text={"Masuk"} onClick={handleRouteLogin} />
-        </div>
-      ) : (
-        <div className={styles.profile_container} onClick={onClick}>
-          <img
-            className={styles.img_profile}
-            src={user.image}
-            alt="img-profile"
-          />
-          <p>{user.name}</p>
-        </div>
-      )}
-      {props}
-    </nav>
-  );
-};
-
-const Mobile = ({ props, onClick }) => {
-  return (
-    <nav className={styles.nav}>
-      <section>
-        <Link href={"/"}>
-          <Image
-            src={"/comprofile.svg"}
-            width={140}
-            height={40}
-            alt="logo"
-            draggable="false"
-            priority={true}
-            className={styles.img}
-          />
-        </Link>
-      </section>
-      <Image
-        src={"/menu-black.svg"}
-        width={20}
-        height={20}
-        alt="menu"
-        draggable="false"
-        priority={true}
-        onClick={onClick}
-      />
-      {props}
-    </nav>
-  );
-};
-
-const PopUp = ({ setPopup }) => {
-  const { token, user, Logout } = useContext(VacancyContext);
-  const handleRouteLogout = () => Logout(router);
+  const { user, token, Logout } = useContext(VacancyContext);
+  const [popNav, setPopNav] = useState(false);
   const size = useWindowSize();
   const router = useRouter();
-
-  const handleRouteLogin = () => {
-    router.push("/login");
-    setPopup(false);
+  const [popProfile, setPopProfile] = useState(false);
+  const handlePopNav = () => {
+    setPopNav(!popNav);
+    setPopProfile(false);
   };
-  const handleRouteRegist = () => {
-    router.push("/register");
-    setPopup(false);
+  const handlePopProfile = () => {
+    setPopProfile(!popProfile);
+    setPopNav(false);
   };
-  const handleRouteChange = () => {
-    router.push("/change-password");
-    setPopup(false);
+  const handleLogout = () => {
+    Logout(router, setPopNav);
+    setPopProfile(false);
+    setPopNav(false);
   };
   const handleRouteHome = () => {
     router.push("/");
-    setPopup(false);
+    setPopProfile(false);
+    setPopNav(false);
   };
   const handleRouteVacancy = () => {
     router.push("/vacancy");
-    setPopup(false);
+    setPopProfile(false);
+    setPopNav(false);
   };
   const handleRouteUpload = () => {
     router.push("/upload-job");
-    setPopup(false);
+    setPopProfile(false);
+    setPopNav(false);
+  };
+  const handleRouteAbout = () => {
+    router.push("/about");
+    setPopProfile(false);
+    setPopNav(false);
   };
   return (
-    <>
+    <nav>
       {size.width > 600 ? (
-        <div className={styles.popup_container}>
-          <ul className={styles.popup_list}>
-            <li>
-              <div className={styles.popup_list}>
-                <ButtonLine
-                  text={"Change Password"}
-                  onClick={handleRouteChange}
-                />
-                <Button onClick={handleRouteLogout} text={"Logout"} />
-              </div>
-            </li>
-          </ul>
-        </div>
+        <Desktop
+          user={user}
+          token={token}
+          handlePopProfile={handlePopProfile}
+          popProfile={popProfile}
+          handleLogout={handleLogout}
+          handleRouteHome={handleRouteHome}
+          handleRouteVacancy={handleRouteVacancy}
+          handleRouteUpload={handleRouteUpload}
+          handleRouteAbout={handleRouteAbout}
+        />
       ) : (
-        <div className={styles.popup_container}>
-          <ul className={styles.popup_list}>
-            <li>
-              {token == "" ? (
-                <div className={styles.button_container}>
-                  <ButtonLine text={"Daftar"} onClick={handleRouteRegist} />
-                  <Button text={"Masuk"} onClick={handleRouteLogin} />
-                </div>
-              ) : (
-                <div className={styles.profile_container}>
-                  <img
-                    className={styles.img_profile}
-                    src={user.image}
-                    alt="img-profile"
-                  />
-                  <p>{user.name}</p>
-                </div>
-              )}
-            </li>
-            <li className={styles.items} onClick={handleRouteHome}>
-              Home
-            </li>
-            <li className={styles.items} onClick={handleRouteVacancy}>
-              Job Vacancy
-            </li>
-            <li className={styles.items} onClick={handleRouteUpload}>
-              Upload Job
-            </li>
-            <li>
-              <div className={styles.popup_list}>
-                <ButtonLine
-                  onClick={handleRouteChange}
-                  text={"Change Password"}
-                />
-                <Button onClick={handleRouteLogout} text={"Logout"} />
-              </div>
-            </li>
-          </ul>
-        </div>
+        <Mobile
+          user={user}
+          popNav={popNav}
+          handlePopNav={handlePopNav}
+          handlePopProfile={handlePopProfile}
+          popProfile={popProfile}
+          token={token}
+          handleRouteHome={handleRouteHome}
+          handleRouteVacancy={handleRouteVacancy}
+          handleRouteUpload={handleRouteUpload}
+          handleRouteAbout={handleRouteAbout}
+        />
       )}
-    </>
+    </nav>
+  );
+};
+
+const Mobile = ({
+  user,
+  popNav,
+  handlePopNav,
+  popProfile,
+  handlePopProfile,
+  handleRouteHome,
+  handleRouteVacancy,
+  handleRouteUpload,
+  handleRouteAbout,
+  token,
+}) => {
+  return (
+    <section className={styles.mobile_nav}>
+      {/* Navigation POPUP */}
+      <div>
+        <Image
+          src={"/menu-black.svg"}
+          width={20}
+          height={20}
+          alt="icon-menu"
+          onClick={handlePopNav}
+        />
+        <Image
+          src={"/comprofile.svg"}
+          width={160}
+          height={20}
+          alt="icon-company"
+        />
+        {popNav ? (
+          <div className={styles.profile_container}>
+            <div className={styles.profile_subcontainer}>
+              <p className={styles.items} onClick={handleRouteHome}>
+                Home
+              </p>
+              <p className={styles.items} onClick={handleRouteVacancy}>
+                Job Vacancy
+              </p>
+              {token !== "" ? (
+                <p className={styles.items} onClick={handleRouteUpload}>
+                  Upload Job
+                </p>
+              ) : null}
+              <p className={styles.items} onClick={handleRouteAbout}>
+                About
+              </p>
+            </div>
+          </div>
+        ) : null}
+      </div>
+
+      {/* Profile POPUP */}
+      <div>
+        <div>
+          {token !== "" ? (
+            <Image
+              src={user.image}
+              width={40}
+              height={40}
+              alt="icon-company"
+              className={styles.img_profile}
+              onClick={handlePopProfile}
+            />
+          ) : (
+            <Button text={"Daftar"} />
+          )}
+        </div>
+        {popProfile ? (
+          <div className={styles.profile_container}>
+            <div className={styles.profile_subcontainer}>
+              <div className={styles.profile}>
+                <Image
+                  src={user.image}
+                  width={60}
+                  height={60}
+                  alt="icon-company"
+                  className={styles.img_profile}
+                />
+                <p>{user.name}</p>
+              </div>
+              <div className={styles.btn_container}>
+                <Link href={"/dashboard"}>Dashboard</Link>
+                <p className={styles.line}></p>
+                <Link href={"/change-password"}>Change Password</Link>
+                <Link href={"#"}>Logout</Link>
+              </div>
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </section>
+  );
+};
+
+const Desktop = ({
+  user,
+  token,
+  handlePopProfile,
+  popProfile,
+  handleLogout,
+  handleRouteHome,
+  handleRouteVacancy,
+  handleRouteUpload,
+  handleRouteAbout,
+}) => {
+  return (
+    <section className={styles.desktop_container}>
+      <Image
+        src={"/comprofile.svg"}
+        width={140}
+        height={20}
+        alt="icon-company"
+      />
+      <ul className={styles.desktop_navigation}>
+        <li onClick={handleRouteHome}>Home</li>
+        <li onClick={handleRouteVacancy}>Job Vacancy</li>
+        {token !== "" ? (
+          <p className={styles.items} onClick={handleRouteUpload}>
+            Upload Job
+          </p>
+        ) : null}
+        <li onClick={handleRouteAbout}>About</li>
+      </ul>
+      <div>
+        {token !== "" ? (
+          <Image
+            src={user.image}
+            width={40}
+            height={40}
+            alt="icon-company"
+            className={styles.img_profile}
+            onClick={handlePopProfile}
+          />
+        ) : (
+          <Button text={"Daftar"} />
+        )}
+      </div>
+      {popProfile ? (
+        <div className={styles.profile_container_desktop}>
+          <div className={styles.profile_subcontainer_desktop}>
+            <div className={styles.profile}>
+              <Image
+                src={user.image}
+                width={60}
+                height={60}
+                alt="icon-company"
+                className={styles.img_profile}
+              />
+              <p>{user.name}</p>
+            </div>
+            <div className={styles.btn_container}>
+              <Link href={"/dashboard"}>Dashboard</Link>
+              <p className={styles.line}></p>
+              <Link href={"/change-password"}>Change Password</Link>
+              <Button text={"Logout"} onClick={handleLogout} />
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </section>
   );
 };
