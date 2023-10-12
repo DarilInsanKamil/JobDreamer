@@ -15,7 +15,7 @@ export const VacancyProvider = ({ children }) => {
         image: '',
     });
     const [token, setToken] = useState('');
-
+    const [currentId, setCurrentId] = useState(null);
     const PAGE_API = `https://dev-example.sanbercloud.com/api/job-vacancy?page=${page}`;
     const MAIN_API = `https://dev-example.sanbercloud.com/api/job-vacancy`;
     const LOGIN_API = 'https://dev-example.sanbercloud.com/api/login';
@@ -107,7 +107,7 @@ export const VacancyProvider = ({ children }) => {
             console.log('berhasil login');
             setLoading(false);
             router.push('/vacancy');
-            setIsDataChange(false);
+            setIsDataChange(true);
         }
         catch (err) {
             console.log(err)
@@ -141,7 +141,20 @@ export const VacancyProvider = ({ children }) => {
             }))
             setLoading(false);
             setIsDataChange(true);
-            router.push('/vacancy');
+            setInputData({
+                title: '',
+                job_description: '',
+                job_qualification: '',
+                job_type: '',
+                job_tenure: '',
+                job_status: '',
+                company_name: '',
+                company_image_url: '',
+                company_city: '',
+                salary_min: '',
+                salary_max: ''
+            })
+            // router.push('/vacancy');
         } catch (err) {
             console.log(err)
         }
@@ -156,10 +169,20 @@ export const VacancyProvider = ({ children }) => {
             .then(() => {
                 setLoading(false);
                 setIsDataChange(true);
-                router.push('/vacancy')
             })
             .catch(err => console.log(err))
     }
+
+    const EditJob = (id, setLoading, router) => {
+        axios.get(`${MAIN_API}/${id}`)
+            .then((res) => {
+                const data = res.data
+                setInputData(data)
+                setCurrentId(data.id)
+                router.push('/upload-job');
+            })
+    }
+
     //function change password
     const ChangePassword = (inputData, setInputData, router) => {
         setLoading(true);
@@ -194,7 +217,8 @@ export const VacancyProvider = ({ children }) => {
         setToken,
         user,
         setUser,
-        Logout
+        Logout,
+        EditJob
     }
 
     return (

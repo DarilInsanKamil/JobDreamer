@@ -3,12 +3,17 @@ import { About, Card, FlowSection, HeroSection, ListCard, ListSection, PrimacySe
 
 export default function Home() {
   return (
-    <main>
-      <HeroSection />
-      <FlowSection />
-      <ListSection />
-      <PrimacySection />
-      <About />
-    </main>
+    <div>
+
+      <main>
+        {/* Konten halaman beranda Anda */}
+        <HeroSection />
+        <FlowSection />
+        <ListSection />
+        <PrimacySection />
+        <About />
+      </main>
+    </div>
+
   )
 }

@@ -1,13 +1,15 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { Button, InputType } from "@/components";
+import { Button, ButtonLine, InputType, InputTypeIcon } from "@/components";
 import { handleChange } from "../../utils/handleChange";
 import { useRouter } from "next/navigation";
-import { VacancyContext } from "../context";
 import styles from "./login.module.css";
+import { VacancyContext } from "../context";
 
-export default function LoginPage() {
+export default function LoginForm() {
   const [loading, setLoading] = useState(false);
+  const [isDataChange, setIsDataChange] = useState(true);
+  const [show, setShow] = useState(true);
   const { LoginSubmit } = useContext(VacancyContext);
   const [inputData, setInputData] = useState({
     email: "",
@@ -22,44 +24,42 @@ export default function LoginPage() {
     event.preventDefault();
     LoginSubmit(inputData, setLoading, router);
   };
+  const handleShow = () => {
+    setShow(!show);
+  };
 
   return (
     <main className={styles.container}>
-      <section className={styles.sub_container}>
-        <div className={styles.heading}>
-          <p className={styles.title}>Login Page</p>
-          <p className={styles.cpywrite}>
-            Welcome back! Please enter your email address and password to login
-            to your account.
-          </p>
-        </div>
-        <form className={styles.form}>
-          <div className={styles.input_container}>
-            <label> Email</label>
-            <InputType
-              type={"email"}
-              label={"Email"}
-              name={"email"}
-              onChange={handleChangeForm}
-              value={inputData.email}
-            />
-          </div>
-          <div className={styles.input_container}>
-            <label>Password</label>
-            <InputType
-              type={"name"}
-              name={"password"}
-              label={"Password"}
-              onChange={handleChangeForm}
-              value={inputData.password}
-            />
-          </div>
-          <Button
-            text={loading ? "Tunggu sebentar" : "Login"}
-            onClick={handleSubmitForm}
+      <form className={styles.sub_container}>
+        <div className={styles.input_container}>
+          <InputType
+            type={"email"}
+            label={"Email"}
+            name={"email"}
+            onChange={handleChangeForm}
+            value={inputData.email}
           />
-        </form>
-      </section>
+        </div>
+        <div className={styles.input_container}>
+          <InputTypeIcon
+            name={"password"}
+            label={"Password"}
+            onChange={handleChangeForm}
+            value={inputData.password}
+            type={show ? "password" : "text"}
+            icon={show ? "/eye-close.svg" : "eye.svg"}
+            handleShow={handleShow}
+          />
+        </div>
+        <Button
+          text={loading ? "Tunggu sebentar" : "Masuk"}
+          onClick={handleSubmitForm}
+        />
+        <p>atau</p>
+        <div className={styles.btn}>
+          <ButtonLine text={"Register"} />
+        </div>
+      </form>
     </main>
   );
 }

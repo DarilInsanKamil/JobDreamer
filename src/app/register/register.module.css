@@ -1,7 +1,27 @@
-.form {
-  padding: 20px;
-  width: 98%;
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, [col-start] 1fr);
+  /* height: 100vh; */
+  padding: 80px 0px;
 }
-.btn {
-  width: 100%;
+.sub_container {
+  grid-column: col-start 5 / span 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.img{
+  object-fit: cover;
+}
+@media (max-width: 600px) {
+  .container {
+    grid-template-columns: repeat(6, [col-start] 1fr);
+    /* height: 100vh; */
+    padding: 80px 20px;
+  }
+  .sub_container {
+    grid-column: col-start 1 / span 6;
+    gap: 12px;
+  }
 }

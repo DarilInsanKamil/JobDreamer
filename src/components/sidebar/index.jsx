@@ -14,18 +14,28 @@ export const FilterBar = () => {
       <h1>Filter</h1>
       <div className={styles.drop}>
         <p>Location</p>
-        <button onClick={() => setOpenLocation(!openLocation)}>
-          <Image className={openLocation ? styles.arrowdown : styles.arrowup} src={'/arrow.svg'} height={12} width={12} alt={'icon-arrow'}/>
-        </button>
+        <Image
+          className={openLocation ? styles.arrowdown : styles.arrowup}
+          src={"/arrow.svg"}
+          height={12}
+          width={12}
+          alt={"icon-arrow"}
+          onClick={() => setOpenLocation(!openLocation)}
+        />
       </div>
-      <div style={{ display: openLocation ? "flex" : "none",  }}>
+      <div style={{ display: openLocation ? "flex" : "none" }}>
         <InputType type={"text"} pholder={"cari lokasi..."} />
       </div>
       <div className={styles.drop}>
         <p>Tipe Pekerjaan</p>
-        <button onClick={() => setOpenType(!openType)}>
-        <Image className={openType ? styles.arrowdown : styles.arrowup} src={'/arrow.svg'} height={12} width={12} alt={'icon-arrow'}/>
-        </button>
+        <Image
+          className={openType ? styles.arrowdown : styles.arrowup}
+          src={"/arrow.svg"}
+          height={12}
+          width={12}
+          alt={"icon-arrow"}
+          onClick={() => setOpenType(!openType)}
+        />
       </div>
       <div style={{ display: openType ? "block" : "none" }}>
         <div className={styles.salary}>
@@ -47,9 +57,14 @@ export const FilterBar = () => {
       </div>
       <div className={styles.drop}>
         <p>Pengalaman</p>
-        <button onClick={() => setOpenExperience(!openExperience)}>
-        <Image className={openExperience ? styles.arrowdown : styles.arrowup} src={'/arrow.svg'} height={12} width={12} alt={'icon-arrow'}/>
-        </button>
+        <Image
+          className={openExperience ? styles.arrowdown : styles.arrowup}
+          src={"/arrow.svg"}
+          height={12}
+          width={12}
+          alt={"icon-arrow"}
+          onClick={() => setOpenExperience(!openExperience)}
+        />
       </div>
       <div style={{ display: openExperience ? "block" : "none" }}>
         <div className={styles.salary}>
@@ -67,11 +82,18 @@ export const FilterBar = () => {
       </div>
       <div className={styles.drop}>
         <p>Salary</p>
-        <button onClick={() => setOpenSalary(!openSalary)}>
-        <Image className={openSalary ? styles.arrowdown : styles.arrowup} src={'/arrow.svg'} height={12} width={12} alt={'icon-arrow'}/>
-        </button>
+        <Image
+          className={openSalary ? styles.arrowdown : styles.arrowup}
+          src={"/arrow.svg"}
+          height={12}
+          width={12}
+          onClick={() => setOpenSalary(!openSalary)}
+          alt={"icon-arrow"}
+        />
       </div>
-      <div style={{display: openSalary ? "block" : "none", marginBottom: '12px'}} >
+      <div
+        style={{ display: openSalary ? "block" : "none", marginBottom: "12px" }}
+      >
         <div className={styles.salary}>
           <InputType type={"number"} pholder={"salary min"} />
           <InputType type={"number"} pholder={"salary max"} />

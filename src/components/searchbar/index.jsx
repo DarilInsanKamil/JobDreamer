@@ -1,4 +1,4 @@
-import { Button, ButtonLine, InputType } from "..";
+import { Button, InputType } from "..";
 import styles from "./searchbar.module.css";
 export const SearchBar = ({ onSearch }) => {
   return (
@@ -10,10 +10,12 @@ export const SearchBar = ({ onSearch }) => {
         karir Anda
       </p>
       <form onSubmit={onSearch} className={styles.control_container}>
-          <InputType pholder={"Cari pekerjaan"} />
-        <div>
+        <InputType
+          type={"text"}
+          name={"search"}
+          pholder={"Cari pekerjaan"}
+        />
         <Button text={"Search"} type={"submit"} />
-        </div>
       </form>
     </div>
   );

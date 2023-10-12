@@ -13,13 +13,13 @@ export const FlowSection = () => {
             <h3>1.</h3>
             <p className={styles.work_title}>Register Account</p>
             <p className={styles.work_desc}>First, you need to make account</p>
-            <a className={styles.link}>{`Register account`}</a>
+            <a href='/register' className={styles.link}>{`Register account`}</a>
           </div>
           <div className={styles.card}>
             <h3>2.</h3>
             <p className={styles.work_title}>Find Job</p>
             <p className={styles.work_desc}>Second, search your draam job</p>
-            <a className={styles.link}>{`Search Job`}</a>
+            <a href='/vacancy' className={styles.link}>{`Search Job`}</a>
           </div>
           <div className={styles.card}>
             <h3>3.</h3>

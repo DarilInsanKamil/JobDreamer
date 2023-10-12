@@ -1,9 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./register.module.css";
-import { Button, InputType } from "@/components";
+import { Button, ButtonLine, InputType, InputTypeIcon } from "@/components";
 import { handleChange } from "../../utils/handleChange";
 import { RegisterAuth } from "../../utils/registerAuth";
+import Image from "next/image";
 
 export default function RegisterPage() {
   const [inputData, setInputData] = useState({
@@ -12,33 +13,66 @@ export default function RegisterPage() {
     password: "",
     image: "",
   });
-
+  const [show, setShow] = useState(true)
   const handleChangeForm = (event) =>
     handleChange(event, inputData, setInputData);
-  const handleSubmitForm = (event) => RegisterAuth(event, inputData);
 
+  const handleSubmitForm = (event) => RegisterAuth(event, inputData);
+  const handleShow = () => {
+    setShow(!show);
+  };
   return (
-    <section className={styles.form}>
-      <p>Register Account</p>
-      <form>
-        <div>
-          <label>Email</label>
-          <InputType type={"email"} />
+    <section className={styles.container}>
+      <form className={styles.sub_container}>
+        <div className={styles.heading}>
+          <p className={styles.title}>Register Page</p>
+          <p className={styles.cpywrite}>
+            Welcome back! Please enter your email address and password to login
+            to your account.
+          </p>
         </div>
-        <div>
-          <label>name</label>
-          <InputType type={"name"} />
+        <Image
+          src={inputData.image == "" ? "/not-found.jpg" : inputData.image}
+          width={100}
+          height={100}
+          className={styles.img}
+        />
+        <InputType
+          type={"text"}
+          label={"Image_Url"}
+          name={"image"}
+          onChange={handleChangeForm}
+          value={inputData.image}
+        />
+        <InputType
+          type={"email"}
+          label={"Email"}
+          name={"email"}
+          onChange={handleChangeForm}
+          value={inputData.email}
+        />
+        <InputType
+          type={"name"}
+          label={"Name"}
+          name={"name"}
+          onChange={handleChangeForm}
+          value={inputData.name}
+        />
+        <InputTypeIcon
+          label={"Password"}
+          name={"password"}
+          onChange={handleChangeForm}
+          value={inputData.password}
+          type={show ? "password" : "text"}
+          icon={show ? "/eye-close.svg" : "eye.svg"}
+          handleShow={handleShow}
+        />
+        <div className={styles.btn}>
+          <Button text={"Register"} onClick={handleSubmitForm} />
         </div>
-        <div>
-          <label>Image Url</label>
-          <InputType type={"text"} />
-        </div>
-        <div>
-          <label>Password</label>
-          <InputType type={"password"} />
-        </div>
-        <div  className={styles.btn}>
-        <Button text={"Register"}/>
+        <p>atau</p>
+        <div className={styles.btn}>
+          <ButtonLine text={"Masuk"} />
         </div>
       </form>
     </section>

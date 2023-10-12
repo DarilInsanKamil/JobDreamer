@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Image from "next/image";
 import styles from "./card.module.css";
 export const Card = ({
@@ -13,7 +13,7 @@ export const Card = ({
   salary_min,
   salary_max,
   onClick,
-  valbtn
+  valbtn,
 }) => {
   return (
     <div className={styles.card_container}>
@@ -33,7 +33,7 @@ export const Card = ({
       <div className={styles.card_body}>
         <p className={styles.company_city}>
           <Image
-            src="./location-icon.svg"
+            src="/location-icon.svg"
             alt="location-icon"
             width={16}
             height={16}
@@ -43,7 +43,7 @@ export const Card = ({
         </p>
         <p className={styles.salary}>
           <Image
-            src="./salary.svg"
+            src='salary.svg'
             alt="salary"
             width={16}
             height={16}
@@ -58,7 +58,9 @@ export const Card = ({
           <p className={styles.job_type}>{job_type || "null"}</p>
           <p className={styles.job_tenure}>{job_tenure}</p>
         </div>
-        <button onClick={onClick} value={valbtn} className={styles.btn}>See detail </button>
+        <button onClick={onClick} value={valbtn} className={styles.btn}>
+          See detail{" "}
+        </button>
       </div>
     </div>
   );

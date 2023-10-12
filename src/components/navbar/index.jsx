@@ -52,7 +52,7 @@ export const NavigationBar = () => {
     setPopNav(false);
   };
   const handleRouteDashboard = () => {
-    router.push("/delete");
+    router.push("/dashboard");
     setPopProfile(false);
     setPopNav(false);
   };
@@ -185,9 +185,10 @@ const Mobile = ({
                 <p>{user.name}</p>
               </div>
               <div className={styles.btn_container}>
-                <p onClick={handleRouteDashboard}>Dashboard</p>
                 <p className={styles.line}></p>
+                <p onClick={handleRouteDashboard}>Dashboard</p>
                 <p onClick={handleRouteChange}>Change Password</p>
+                <p className={styles.line}></p>
                 <Button text={"Logout"} onClick={handleLogout} />
               </div>
             </div>
@@ -258,9 +259,10 @@ const Desktop = ({
               <p>{user.name}</p>
             </div>
             <div className={styles.btn_container}>
-              <p onClick={handleRouteDashboard}>Dashboard</p>
               <p className={styles.line}></p>
+              <p onClick={handleRouteDashboard}>Dashboard</p>
               <p onClick={handleRouteChange}>Change Password</p>
+              <p className={styles.line}></p>
               <Button text={"Logout"} onClick={handleLogout} />
             </div>
           </div>

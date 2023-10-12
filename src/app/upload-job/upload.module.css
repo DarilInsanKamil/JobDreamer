@@ -1,5 +1,5 @@
 .container {
-  background-color: var(--primer-color);
+  background-color: white;
   font-family: var(--font-poppins);
   padding: 1.25rem 0rem;
   color: var(--text-color);
