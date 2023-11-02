@@ -1,10 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense, useContext } from "react";
+import { Suspense } from "react";
 import styles from "./detail.module.css";
 import { splitter, tandaPemisahTitik } from "@/utils/convert";
-import { VacancyContext } from "@/app/context";
-import { Button, LoaderSkeleton, LoadingDetail } from "@/components";
+import { Button, LoaderSkeleton } from "@/components";
 
 const getData = async (params) => {
   try {

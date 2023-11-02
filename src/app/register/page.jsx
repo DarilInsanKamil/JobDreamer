@@ -13,11 +13,28 @@ export default function RegisterPage() {
     password: "",
     image: "",
   });
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(true);
   const handleChangeForm = (event) =>
     handleChange(event, inputData, setInputData);
 
-  const handleSubmitForm = (event) => RegisterAuth(event, inputData);
+  const handleSubmitForm = async (event) => {
+    event.preventDefault();
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/register`,
+        {
+          name: inputData.name,
+          email: inputData.email,
+          image_url: inputData.image,
+          password: inputData.password,
+        }
+      );
+      console.log(`'Berhasil': ${res.data}`);
+    } catch (err) {
+      console.log(JSON.stringify(err));
+    }
+  };
+
   const handleShow = () => {
     setShow(!show);
   };

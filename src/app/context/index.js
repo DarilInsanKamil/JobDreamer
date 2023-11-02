@@ -104,7 +104,6 @@ export const VacancyProvider = ({ children }) => {
             Cookies.set('name', user.name, { expires: 1 });
             Cookies.set('image', user.image_url, { expires: 1 });
             Cookies.set('token', data.token, { expires: 1 });
-            console.log('berhasil login');
             setLoading(false);
             router.push('/vacancy');
             setIsDataChange(true);

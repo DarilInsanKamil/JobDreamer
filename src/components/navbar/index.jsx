@@ -17,6 +17,7 @@ export const NavigationBar = () => {
     setPopNav(!popNav);
     setPopProfile(false);
   };
+  
   const handlePopProfile = () => {
     setPopProfile(!popProfile);
     setPopNav(false);

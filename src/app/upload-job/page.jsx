@@ -31,7 +31,8 @@ export default function UploadJobPage() {
   const handleChangeForm = (event) =>
     handleChange(event, inputData, setInputData);
 
-  console.log(inputData);
+  console.log(inputData.job_tenure);
+  console.log(inputData.job_type);
   return (
     <main className={styles.container}>
       <form className={styles.form_container} onSubmit={handleSubmitJob}>

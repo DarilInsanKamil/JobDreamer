@@ -19,12 +19,12 @@ export default function JobDashboard() {
     PaginationPrev();
   };
 
-  const handleDelete = (e) => {
-    let id = parseInt(e.target.value);
+  const handleDelete = (event) => {
+    let id = event.currentTarget.value;
     DeleteJob(id, setLoading, router);
   };
-  const handleEdit = (e) => {
-    let id = parseInt(e.target.value);
+  const handleEdit = (event) => {
+    let id = event.currentTarget.value;
     EditJob(id, setLoading, router);
   };
 
@@ -70,16 +70,15 @@ export default function JobDashboard() {
                   <td className={styles.td}>{res.job_type}</td>
                   <td className={styles.td}>{res.job_tenure}</td>
                   <td className={styles.btn}>
-                    <Button
+                    <button
                       value={res.id}
                       onClick={handleDelete}
-                      text={"Delete"}
-                    />
-                    <ButtonLine
+                      // text={"Delete"}
+                    >delete</button>
+                    <button
                       value={res.id}
                       onClick={handleEdit}
-                      text={"Edit"}
-                    />
+                    >edit</button>
                   </td>
                 </tr>
               ))}
